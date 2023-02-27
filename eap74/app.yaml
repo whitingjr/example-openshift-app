@@ -1,0 +1,47 @@
+build:
+  pullSecret: eap-pull-secret
+  uri: https://github.com/wildfly-extras/first-responder-demo
+  ref: main
+  enabled: true
+  mode: s2i
+  output:
+    kind: ImageStreamTag
+  env:
+      - name: MAVEN_ARGS_APPEND
+        value: "-DskipTests -DfailOnMissingWebXml=false -Dquarkus.container-image.push=false -pl backend"
+  s2i:
+    amd64:
+      jdk11:
+        builderImage: registry.redhat.io/jboss-eap-7/eap74-openjdk11-openshift-rhel8
+        runtimeImage: registry.redhat.io/jboss-eap-7/eap74-openjdk11-runtime-openshift-rhel8
+      jdk8:
+        builderImage: registry.redhat.io/jboss-eap-7/eap74-openjdk8-openshift-rhel7
+        runtimeImage: registry.redhat.io/jboss-eap-7/eap74-openjdk8-runtime-openshift-rhel7
+    arch: amd64
+    jdk: '11'
+    version: latest
+deploy:
+  enabled: true
+  livenessProbe:
+    exec:
+      command:
+        - /bin/bash
+        - '-c'
+        - /opt/eap/bin/livenessProbe.sh
+    initialDelaySeconds: 60
+  readinessProbe:
+    exec:
+      command:
+        - /bin/bash
+        - '-c'
+        - /opt/eap/bin/readinessProbe.sh
+    initialDelaySeconds: 10
+  replicas: 1
+  route:
+    enabled: true
+    tls:
+      enabled: true
+      insecureEdgeTerminationPolicy: Redirect
+      termination: edge
+image:
+  tag: latest
