@@ -25,3 +25,5 @@ wget ${HELM_CHARTS_URL}/${HELM_CHARTS_VERSION}/${HELM_CHARTS_VERSION}.tgz
 # helm install the app
 helm install ${APP_NAME} ${HELM_CHARTS_VERSION}.tgz -f app.yaml
 
+# to remove app
+# #helm uninstall ${APP_NAME}
