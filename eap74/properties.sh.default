@@ -1,0 +1,14 @@
+# note, username is from redhat dev portal: https://developers.redhat.com/
+USERNAME=user@redhat.com
+PASSWORD=password
+EMAIL=user@redhat.com
+# namespace is the NS in the openshift cluster, eg yourlogin-dev
+NAMESPACE=user-dev
+# auth token for oc login, you can get this from the 'Show login command' in the OpenShift Console
+OPENSHIFT_URL=https://api.sandbox-m2.ll9k.p1.openshiftapps.com:6443
+AUTH_TOKEN=sha256~token
+DOCKER_SERVER=registry.redhat.io
+APP_NAME=frs-demo
+HELM_CHARTS_URL=https://github.com/jbossas/eap-charts/releases/download
+HELM_CHARTS_VERSION=eap74-1.1.0
+APP_NAME=fr-eap74
