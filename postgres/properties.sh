@@ -1,5 +1,5 @@
 #!/bin/bash
 set -euo pipefail
 
-APP_NAME="fr-db"
+APP_NAME="frdemo-db"
 

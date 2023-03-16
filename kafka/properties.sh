@@ -2,4 +2,4 @@
 
 set -eo pipefail
 
-APP_NAME=fr-kafka
+APP_NAME=frdemo-kafka

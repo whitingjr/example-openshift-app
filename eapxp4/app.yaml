@@ -1,11 +1,7 @@
 build:
-  pullSecret: eap-pull-secret
   uri: https://github.com/wildfly-extras/first-responder-demo
   ref: main
-  enabled: true
   mode: s2i
-  output:
-    kind: ImageStreamTag
   env:
       - name: MAVEN_ARGS_APPEND
         value: "-DskipTests -DfailOnMissingWebXml=false -Dquarkus.container-image.push=false -pl !simulator"
@@ -17,53 +13,36 @@ build:
     galleonLayers:
       - cloud-server
       - postgresql-datasource
-    amd64:
-      version: latest
-      jdk: "11"
-      jdk11:
-        builderImage: registry.redhat.io/jboss-eap-7/eap-xp4-openjdk11-openshift-rhel8
-        runtimeImage: registry.redhat.io/jboss-eap-7/eap-xp4-openjdk11-runtime-openshift-rhel8
 deploy:
-  enabled: true
-  livenessProbe:
-    httpGet:
-      path: /health/live
-      port: admin
-    initialDelaySeconds: 60
-  readinessProbe:
-    httpGet:
-      path: /health/ready
-      port: admin
-    initialDelaySeconds: 60
-  replicas: 1
-  route:
-    enabled: true
-    tls:
-      enabled: true
-      insecureEdgeTerminationPolicy: Redirect
-      termination: edge
   env:
     # Env vars to connect to PostgreSQL DB
     - name: POSTGRESQL_DATABASE
-      valueFrom:
-        secretKeyRef:
-          key: database-name
-          name: frtest
+      value: frdemo
     - name: POSTGRESQL_USER
-      valueFrom:
-        secretKeyRef:
-          key: database-user
-          name: frtest
+      value: frdemo
     - name: POSTGRESQL_PASSWORD
-      valueFrom:
-        secretKeyRef:
-          key: database-password
-          name: frtest
+      value: frdemo
     - name: POSTGRESQL_DATASOURCE
-      value: frtest
+      value: frdemo
     - name: POSTGRESQL_SERVICE_HOST
-      value: frtest
+      value: frdemo-db-postgressql
     - name: POSTGRESQL_SERVICE_PORT
-      value: "5432"  
-image:
-  tag: latest
+      value: "5432"
+  maxReplicas: 10
+  metrics:
+  - resource:
+      name: cpu
+      target:
+        averageUtilization: 100
+        type: Utilization
+    type: Resource
+  minReplicas: 1
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: frdemo
+  containers:
+    - resources:
+        requests:
+          cpu: 100m
+          memory: 500Mi

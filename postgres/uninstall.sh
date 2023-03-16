@@ -3,4 +3,5 @@ set -euo pipefail
 
 . properties.sh
 
-helm uninstall ${APP_NAME}
+oc delete dc/${APP_NAME}
+# helm uninstall ${APP_NAME}

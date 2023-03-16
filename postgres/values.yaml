@@ -1,29 +1,6 @@
 postgresql:
     auth:
-        username: frtest
-        password: frtest
-        database: frtest
-    primary:
-        podSecurityContext:
-            enabled: false
-            fsGroup: ""
-        containerSecurityContext:
-            enabled: false
-            runAsUser: "auto"
-        persistence:
-            size: 2Gi
+        username: frdemo
+        password: frdemo
+        database: frdemo
 
-    readReplicas:
-        podSecurityContext:
-            enabled: false
-            fsGroup: ""
-        containerSecurityContext:
-            enabled: false
-            runAsUser: "auto"
-        persistence:
-            size: 2Gi
-
-    volumePermissions:
-        enabled: false
-        securityContext:
-            runAsUser: "auto"

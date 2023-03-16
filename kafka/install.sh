@@ -6,6 +6,9 @@ set -euo pipefail
 helm repo add bitnami https://charts.bitnami.com/bitnami
 helm install ${APP_NAME} bitnami/kafka -f values.yaml
 
+oc adm policy add-scc-to-user -z default anyuid
+oc adm policy add-scc-to-user -z frdemo-kafka anyuid
+
 # Kafka can be accessed by consumers via port 9092 on the following DNS name from within your cluster:
 #
 #    frkafa-kafka.kwills-dev.svc.cluster.local
