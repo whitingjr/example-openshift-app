@@ -32,6 +32,8 @@ deploy:
       value: frdemo-ds
     - name: POSTGRESQL_SERVICE_PORT
       value: "5432"
+    - name: MP_MESSAGING_CONNECTOR_SMALLRYE_KAFKA_BOOTSTRAP_SERVERS
+      value: frdemo-kafka:9092
   maxReplicas: 10
   metrics:
   - resource:
