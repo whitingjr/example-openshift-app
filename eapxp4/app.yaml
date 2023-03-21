@@ -14,19 +14,22 @@ build:
     galleonLayers:
       - cloud-server
       - postgresql-datasource
+      - microprofile-reactive-messaging-kafka
 deploy:
   env:
     # Env vars to connect to PostgreSQL DB
     - name: POSTGRESQL_DATABASE
-      value: FrDemoDs
+      value: frdemo
     - name: POSTGRESQL_USER
-      value: FrDemoDs
+      value: frdemo
     - name: POSTGRESQL_PASSWORD
-      value: FrDemoDs
+      value: frdemo
     - name: POSTGRESQL_DATASOURCE
       value: FRDemoDS
+    - name: POSTGRESQL_JNDI
+      value: java:/FRDemoDS
     - name: POSTGRESQL_SERVICE_HOST
-      value: FrDemoDs-db-postgressql
+      value: frdemo-ds
     - name: POSTGRESQL_SERVICE_PORT
       value: "5432"
   maxReplicas: 10
