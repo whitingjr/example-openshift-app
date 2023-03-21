@@ -18,15 +18,15 @@ deploy:
   env:
     # Env vars to connect to PostgreSQL DB
     - name: POSTGRESQL_DATABASE
-      value: frdemo
+      value: FrDemoDs
     - name: POSTGRESQL_USER
-      value: frdemo
+      value: FrDemoDs
     - name: POSTGRESQL_PASSWORD
-      value: frdemo
+      value: FrDemoDs
     - name: POSTGRESQL_DATASOURCE
       value: FRDemoDS
     - name: POSTGRESQL_SERVICE_HOST
-      value: frdemo-db-postgressql
+      value: FrDemoDs-db-postgressql
     - name: POSTGRESQL_SERVICE_PORT
       value: "5432"
   maxReplicas: 10
