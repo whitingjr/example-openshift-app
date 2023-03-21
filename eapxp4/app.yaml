@@ -1,10 +1,11 @@
 build:
   uri: https://github.com/wildfly-extras/first-responder-demo
   ref: main
+  contextDir: backend
   mode: s2i
   env:
       - name: MAVEN_ARGS_APPEND
-        value: "-DskipTests -DfailOnMissingWebXml=false -Dquarkus.container-image.push=false -pl !simulator"
+        value: "-DskipTests -DfailOnMissingWebXml=false -Dquarkus.container-image.push=false"
       - name: POSTGRESQL_DRIVER_VERSION
         value: '42.2.19'
   s2i:
