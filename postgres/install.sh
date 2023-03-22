@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-APP_NAME="frdemo-ds"
+. properties.sh
 
 oc new-app postgresql-ephemeral \
    -p DATABASE_SERVICE_NAME=${APP_NAME} \
