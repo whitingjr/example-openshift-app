@@ -1,7 +1,10 @@
 #!/bin/bash
 set -euo pipefail
 
+. ../eapxp4/properties.sh
 . properties.sh
+
+oc project -n ${NAMESPACE}
 
 helm repo add bitnami https://charts.bitnami.com/bitnami
 helm install ${APP_NAME} bitnami/kafka -f values.yaml
