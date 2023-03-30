@@ -7,7 +7,7 @@ set -euo pipefail
 oc project -n ${NAMESPACE}
 
 helm repo add bitnami https://charts.bitnami.com/bitnami
-helm install ${APP_NAME} bitnami/kafka -f values.yaml
+helm install -n ${NAMESPACE} ${APP_NAME} bitnami/kafka -f values.yaml
 
 oc adm policy add-scc-to-user -z default anyuid
 oc adm policy add-scc-to-user -z frdemo-kafka anyuid
