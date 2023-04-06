@@ -7,7 +7,7 @@ build:
       - name: MAVEN_ARGS_APPEND
         value: "-DskipTests -DfailOnMissingWebXml=false -Dquarkus.container-image.push=false"
       - name: POSTGRESQL_DRIVER_VERSION
-        value: '42.2.19'
+        value: '42.5.0'
   s2i:
     featurePacks:
       - org.jboss.eap:eap-datasources-galleon-pack:7.4.0.GA-redhat-00003
