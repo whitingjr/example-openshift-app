@@ -13,4 +13,4 @@ oc create secret docker-registry eap-pull-secret --docker-server=${DOCKER_SERVER
 oc project ${NAMESPACE}
 
 # helm install the app
-helm install ${APP_NAME} -f app.yaml -n ${NAMESPACE} --repo https://jbossas.github.io/eap-charts eap-xp4
+helm install ${APP_NAME} --set build.pullSecret=eap-pull-secret -f app.yaml -n ${NAMESPACE} --repo https://jbossas.github.io/eap-charts eap-xp4
