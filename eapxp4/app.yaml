@@ -1,5 +1,5 @@
 build:
-  uri: https://github.com/wildfly-extras/first-responder-demo
+  uri: https://github.com/hpehl/first-responder-demo.git
   ref: main
   contextDir: backend
   mode: s2i
