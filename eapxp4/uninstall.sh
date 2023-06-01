@@ -9,3 +9,4 @@ oc login --token=${AUTH_TOKEN} --server=${OPENSHIFT_URL}
 
 # uninstall app
 helm uninstall ${APP_NAME}
+oc -n ${NAMESPACE} delete hpa/${APP_NAME}

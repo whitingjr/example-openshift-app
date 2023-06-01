@@ -38,4 +38,3 @@ deploy:
     requests:
       cpu: 100m
       memory: 500Mi
-  replicas: 1
