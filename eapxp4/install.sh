@@ -14,3 +14,4 @@ oc -n ${NAMESPACE} create secret docker-registry eap-pull-secret --docker-server
 
 # helm install the app
 helm install ${APP_NAME} -f values.yaml -f app.yaml -n ${NAMESPACE} --repo https://jbossas.github.io/eap-charts eap-xp4
+oc -n ${NAMESPACE} autoscale deployment ${APP_NAME} --cpu-percent=85 --min=1 --max=10
